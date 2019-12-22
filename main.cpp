@@ -110,8 +110,10 @@ void preAuton( void )
   // Define a keybind handler object
   KeyBind_Handler KeyBinds;
   // Set the keybinds from the controller
+  Controller1.ButtonL1.pressed( KeyBinds.ButtonL1Pressed );
   Controller1.ButtonL2.pressed( KeyBinds.ButtonL2Pressed );
   Controller1.ButtonL2.released( KeyBinds.ButtonL2Released );
+  Controller1.ButtonR1.pressed( KeyBinds.ButtonR1Pressed );
   Controller1.ButtonR2.pressed( KeyBinds.ButtonR2Pressed );
   Controller1.ButtonR2.released( KeyBinds.ButtonR2Released );
    // Define our UI object
