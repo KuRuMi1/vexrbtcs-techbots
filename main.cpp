@@ -11,7 +11,7 @@
 #include "robot-config.h"
 #include "ui.h"
 #include "keyBinds.h"
-#include "visionSensor.h"
+// #include "visionSensor.h"
 #include "stdlib.h"
 #include "math.h"
 
@@ -130,7 +130,7 @@ void preAuton( void )
 // Autonomous Mode - when the robot can operate by itself
 void autonomous( void )
 {
-  // Calibrate the brightness of the vision sensor - may vary the enviroment during competitions
+  /* // Calibrate the brightness of the vision sensor - may vary the enviroment during competitions
   visionSensor.setBrightness( 50 );
   // Set the signature(s) to the vision sensor
   visionSensor.setSignature( ORANGE_CUBE );
@@ -167,7 +167,8 @@ void autonomous( void )
         _motor_groups[ MG_IDX::RSM ].stop();
       }
     }
-  }
+  } */
+  
 }
  
 // Driving Control Mode - when the controller controls the robot
