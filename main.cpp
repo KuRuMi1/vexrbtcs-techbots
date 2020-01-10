@@ -116,15 +116,15 @@ void preAuton( void )
   Controller1.ButtonR1.pressed( KeyBinds.ButtonR1Pressed );
   Controller1.ButtonR2.pressed( KeyBinds.ButtonR2Pressed );
   Controller1.ButtonR2.released( KeyBinds.ButtonR2Released );
-   // Define our UI object
-  //UI _GUI;
+  // Define our UI object
+  UI _GUI;
   // Set the pressing callbacks from the brain's screen
   //Brain.Screen.pressed( ScreenHandler_Pressed );
   // Display the field in the brain
-  //_GUI.TowerTakeoverDisplay();
+  _GUI.TowerTakeoverDisplay();
   // Display the start menu (for practice)
   //_GUI.StartMenu();
-  autonomous(); // For practice purposes; remove it when competing!
+  usercontrol(); // For practice purposes; remove it when competing!
 }
  
 // Autonomous Mode - when the robot can operate by itself
@@ -197,6 +197,11 @@ void drive()
   // If the driver moves the joysticks
   if( LJSspeed != 0 || RJSspeed != 0 )
   {
+    // Create a constraint for the maximum speed
+    if( LJSspeed > 60 ) LJSspeed = 60 - LJSspeed;
+    else if( LJSspeed < -60 ) LJSspeed = 60 + LJSspeed;
+    if( RJSspeed > 60 ) RJSspeed = 60 - RJSspeed;
+    else if( RJSspeed < -60 ) RJSspeed = 60 + RJSspeed;
     // If the driver moves forward
     if( LJSspeed > 0 ) _motor_groups[ MG_IDX::LSM ].spin( FORWARD, LJSspeed, PCT );
     else if( LJSspeed < 0 ) _motor_groups[ MG_IDX::LSM ].spin( BACKWARD, abs( LJSspeed ), PCT ); // Use the absolute value function to use a positive value in order to spin the correct direction
