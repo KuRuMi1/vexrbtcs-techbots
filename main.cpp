@@ -198,10 +198,26 @@ void drive()
   if( LJSspeed != 0 || RJSspeed != 0 )
   {
     // Create a constraint for the maximum speed
-    if( LJSspeed > 60 ) LJSspeed = 60 - LJSspeed;
-    else if( LJSspeed < -60 ) LJSspeed = 60 + LJSspeed;
-    if( RJSspeed > 60 ) RJSspeed = 60 - RJSspeed;
-    else if( RJSspeed < -60 ) RJSspeed = 60 + RJSspeed;
+    if( LJSspeed > 60 )
+    {
+      int temp = LJSspeed - 60;
+      LJSspeed = LJSspeed - temp;
+    }
+    else if( LJSspeed < -60 )
+    {
+      int temp = LJSspeed + 60;
+      LJSspeed = LJSspeed - temp;
+    }
+    if( RJSspeed > 60 )
+    {
+      int temp = RJSspeed - 60;
+      RJSspeed = RJSspeed - temp;
+    }
+    else if( RJSspeed < -60 )
+    {
+      int temp = RJSspeed - 60;
+      RJSspeed = RJSspeed - temp;
+    }
     // If the driver moves forward
     if( LJSspeed > 0 ) _motor_groups[ MG_IDX::LSM ].spin( FORWARD, LJSspeed, PCT );
     else if( LJSspeed < 0 ) _motor_groups[ MG_IDX::LSM ].spin( BACKWARD, abs( LJSspeed ), PCT ); // Use the absolute value function to use a positive value in order to spin the correct direction
