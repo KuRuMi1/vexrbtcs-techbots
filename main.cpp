@@ -15,11 +15,12 @@ vex::motor rightmotor( vex::PORT2, vex::gearSetting::ratio18_1, true );
 int main() {
  Competition.autonomous( atonomous );
  Competition.drivercontrol( usercontrol );
- usercontrol();
+ atonomous();
 }
 
 void atonomous() {
-
+  leftmotor.rotateFor( 2020, vex::rotationUnits::deg, false );
+  rightmotor.rotateFor( 2020, vex::rotationUnits::deg,true);
 }
 
 void usercontrol() {
