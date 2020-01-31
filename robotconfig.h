@@ -12,7 +12,9 @@ extern vex::motor leftmotor;
 
 extern vex::motor rightmotor;
 
-extern vex::motor liftmotor;
+extern vex::motor liftmotor1;
+
+extern vex::motor liftmotor2;
 
 extern vex::motor clawmotor;
 
@@ -23,5 +25,6 @@ void atonomous();
 void usercontrol();
 
 void drive();
+// /void lift();
 
 #endif // ROBOT_CONFIG_H
