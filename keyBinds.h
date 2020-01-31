@@ -12,6 +12,10 @@ class KeyBind_Handler
     static void ButtonR1Released();
     static void ButtonR2Pressed();
     static void ButtonR2Released();
+    static void ButtonXPressed();
+    static void ButtonXReleased();
+    static void ButtonYPressed();
+    static void ButtonYReleased();
 };
 
 #endif // KEYBINDS_H
