@@ -11,16 +11,22 @@ vex::controller Controller = vex::controller();
 
 vex::motor leftmotor( vex::PORT1, vex::gearSetting::ratio18_1, false );
 vex::motor rightmotor( vex::PORT2, vex::gearSetting::ratio18_1, true );
-vex::motor29 liftmotor1( brian.ThreeWirePort.G, false );
-vex::motor29 liftmotor2( brian.ThreeWirePort.H, false );
-
+vex::motor liftmotor1( vex::PORT3, vex::gearSetting::ratio18_1, false );
+vex::motor liftmotor2( vex::PORT4, vex::gearSetting::ratio18_1, false );
+vex::motor clawtiltmotor( vex::PORT5, vex::gearSetting::ratio18_1, false );
+vex::motor clawmotor( vex::PORT6, vex::gearSetting::ratio18_1, false );
 
 int main() {
  Competition.autonomous( atonomous );
  Competition.drivercontrol( usercontrol );
- liftmotor1.spin( vex::directionType::fwd, 30, vex::velocityUnits::pct );
- liftmotor2.spin( vex::directionType::fwd, 30, vex::velocityUnits::pct );
- //usercontrol();
+ KeyBind_Handler key;
+ Controller.ButtonL1.pressed( key.ButtonL1Pressed );
+ Controller.ButtonR1.pressed( key.ButtonR1Pressed );
+ Controller.ButtonL2.pressed( key.ButtonL2Pressed );
+ Controller.ButtonR2.pressed( key.ButtonR2Pressed );
+ Controller.ButtonX.pressed( key.ButtonXPressed );
+ Controller.ButtonY.pressed( key.ButtonYPressed );
+ usercontrol();
 }
 
 void atonomous() {
@@ -32,7 +38,7 @@ void usercontrol() {
   while( true )
   {
     drive();
-    lift();
+    // lift();
     vex::task::sleep( 100 );
   }
 }
@@ -85,7 +91,7 @@ void drive() {
   }
 }
 
-void lift()
+/* void lift()
 {
   if( Controller.ButtonL1.pressing() )
   {
@@ -97,4 +103,4 @@ void lift()
     liftmotor1.spin( vex::directionType::rev, 30, vex::velocityUnits::pct );
     liftmotor2.spin( vex::directionType::rev, 30, vex::velocityUnits::pct );
   }
-}
+} */
