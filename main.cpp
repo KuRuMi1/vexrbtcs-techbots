@@ -3,6 +3,7 @@
 #include "robot-config.h"
 #include "stdlib.h"
 #include "math.h"
+#include "keyBinds.h"
 
 vex::brain brian = vex::brain();
 vex::competition Competition = vex::competition();
@@ -10,23 +11,28 @@ vex::controller Controller = vex::controller();
 
 vex::motor leftmotor( vex::PORT1, vex::gearSetting::ratio18_1, false );
 vex::motor rightmotor( vex::PORT2, vex::gearSetting::ratio18_1, true );
+vex::motor29 liftmotor1( brian.ThreeWirePort.G, false );
+vex::motor29 liftmotor2( brian.ThreeWirePort.H, false );
 
 
 int main() {
  Competition.autonomous( atonomous );
  Competition.drivercontrol( usercontrol );
- atonomous();
+ liftmotor1.spin( vex::directionType::fwd, 30, vex::velocityUnits::pct );
+ liftmotor2.spin( vex::directionType::fwd, 30, vex::velocityUnits::pct );
+ //usercontrol();
 }
 
 void atonomous() {
-  leftmotor.rotateFor( 2020, vex::rotationUnits::deg, false );
-  rightmotor.rotateFor( 2020, vex::rotationUnits::deg,true);
+  
+  
 }
 
 void usercontrol() {
   while( true )
   {
     drive();
+    lift();
     vex::task::sleep( 100 );
   }
 }
@@ -76,5 +82,19 @@ void drive() {
     // Stop the wheels if they're spinning
     leftmotor.stop();
     rightmotor.stop();
+  }
+}
+
+void lift()
+{
+  if( Controller.ButtonL1.pressing() )
+  {
+    liftmotor1.spin( vex::directionType::fwd, 30, vex::velocityUnits::pct );
+    liftmotor2.spin( vex::directionType::fwd, 30, vex::velocityUnits::pct );
+  }
+  else if( Controller.ButtonR1.pressing() )
+  {
+    liftmotor1.spin( vex::directionType::rev, 30, vex::velocityUnits::pct );
+    liftmotor2.spin( vex::directionType::rev, 30, vex::velocityUnits::pct );
   }
 }
