@@ -13,8 +13,8 @@ vex::motor leftmotor( vex::PORT1, vex::gearSetting::ratio18_1, false );
 vex::motor rightmotor( vex::PORT2, vex::gearSetting::ratio18_1, true );
 vex::motor liftmotor1( vex::PORT3, vex::gearSetting::ratio18_1, false );
 vex::motor liftmotor2( vex::PORT4, vex::gearSetting::ratio18_1, false );
-vex::motor clawtiltmotor( vex::PORT5, vex::gearSetting::ratio18_1, false );
-vex::motor clawmotor( vex::PORT6, vex::gearSetting::ratio18_1, false );
+vex::motor clawmotor( vex::PORT5, vex::gearSetting::ratio18_1, false );
+vex::motor clawtiltmotor( vex::PORT6, vex::gearSetting::ratio18_1, false );
 
 int main() {
  Competition.autonomous( atonomous );
@@ -49,8 +49,12 @@ void drive() {
   // Create a offset from -10 to 10 to accurately move the robot
   if( abs( LJSspeed ) < 10 ) LJSspeed = 0;
   if( abs( RJSspeed ) < 10 ) RJSspeed = 0;
+   // Clear the controller's screen
   Controller.Screen.clearScreen();
+  // Set the controller's screen cursor to 1rd line
   Controller.Screen.setCursor( 1, 1 );
+  // Print the rotation value
+  Controller.Screen.print( "B. Battery: %d%%", brian.Battery.capacity( vex::percentUnits::pct ) );
   // If the driver moves the joysticks
   if( LJSspeed != 0 || RJSspeed != 0 )
   {
@@ -75,7 +79,6 @@ void drive() {
       int temp = RJSspeed + 60;
       RJSspeed = RJSspeed - temp;
     }
-    Controller.Screen.print( "LJ: %d RJ: %d", LJSspeed, RJSspeed );
     // If the driver moves forward
     if( LJSspeed > 0 ) leftmotor.spin( vex::directionType::fwd, LJSspeed, vex::velocityUnits::pct );
     else if( LJSspeed < 0 ) leftmotor.spin( vex::directionType::rev, abs( LJSspeed ), vex::velocityUnits::pct ); // Use the absolute value function to use a positive value in order to spin the correct direction
