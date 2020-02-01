@@ -17,24 +17,28 @@ void KeyBind_Handler::ButtonR1Pressed()
 
 void KeyBind_Handler::ButtonL2Pressed()
 {
-  // Open the claw
-  clawmotor.rotateFor( vex::directionType::rev, 180, vex::rotationUnits::deg );
+  // Close the claw
+  clawmotor.rotateTo( -120, vex::rotationUnits::deg, false );
 }
 
 void KeyBind_Handler::ButtonR2Pressed()
 {
-  // Close the calw
-  clawmotor.rotateFor( vex::directionType::fwd, 180, vex::rotationUnits::deg );
+  // Open the claw
+  clawmotor.rotateTo( 0, vex::rotationUnits::deg, false );
 }
 
 void KeyBind_Handler::ButtonXPressed()
 {
-  // Rotate claw up
-  clawtiltmotor.rotateFor( vex::directionType::fwd, 720, vex::rotationUnits::deg );
+  // Set velocity
+  clawtiltmotor.setVelocity( 20, vex::percentUnits::pct );
+  // Rotate claw down
+  clawtiltmotor.rotateTo( -270, vex::rotationUnits::deg, false );
 }
 
 void KeyBind_Handler::ButtonYPressed()
 {
-  // Rotate claw down
-  clawtiltmotor.rotateFor( vex::directionType::rev, 720, vex::rotationUnits::deg );
+  // Set velocity
+  // clawtiltmotor.setVelocity( 50, vex::percentUnits::pct );
+  // Rotate claw up
+  clawtiltmotor.rotateTo( 0, vex::rotationUnits::deg, false );
 }
