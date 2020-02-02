@@ -17,12 +17,16 @@ void KeyBind_Handler::ButtonR1Pressed()
 
 void KeyBind_Handler::ButtonL2Pressed()
 {
+  // Set the velocity
+  clawmotor.setVelocity( 50, vex::percentUnits::pct );
   // Close the claw
   clawmotor.rotateTo( -120, vex::rotationUnits::deg, false );
 }
 
 void KeyBind_Handler::ButtonR2Pressed()
 {
+  // Set the velocity
+  clawmotor.setVelocity( 50, vex::percentUnits::pct );
   // Open the claw
   clawmotor.rotateTo( 0, vex::rotationUnits::deg, false );
 }
@@ -32,7 +36,7 @@ void KeyBind_Handler::ButtonXPressed()
   // Set velocity
   clawtiltmotor.setVelocity( 20, vex::percentUnits::pct );
   // Rotate claw down
-  clawtiltmotor.rotateTo( -270, vex::rotationUnits::deg, false );
+  clawtiltmotor.rotateTo( -260, vex::rotationUnits::deg, false );
 }
 
 void KeyBind_Handler::ButtonYPressed()
