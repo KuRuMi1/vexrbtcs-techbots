@@ -26,7 +26,8 @@ int main() {
  Controller.ButtonR2.pressed( key.ButtonR2Pressed );
  Controller.ButtonX.pressed( key.ButtonXPressed );
  Controller.ButtonY.pressed( key.ButtonYPressed );
- usercontrol();
+//  clawtiltmotor.rotateTo( -27, vex::rotationUnits::deg, false );
+//  usercontrol();
 }
 
 void atonomous() {
@@ -59,24 +60,24 @@ void drive() {
   if( LJSspeed != 0 || RJSspeed != 0 )
   {
     // Create a constraint for the maximum speed
-    if( LJSspeed > 60 )
+    if( LJSspeed > 45 )
     {
-      int temp = LJSspeed - 60;
+      int temp = LJSspeed - 45;
       LJSspeed = LJSspeed - temp;
     }
-    else if( LJSspeed < -60 )
+    else if( LJSspeed < -45 )
     {
-      int temp = LJSspeed + 60;
+      int temp = LJSspeed + 45;
       LJSspeed = LJSspeed - temp;
     }
-    if( RJSspeed > 60 )
+    if( RJSspeed > 45 )
     {
-      int temp = RJSspeed - 60;
+      int temp = RJSspeed - 45;
       RJSspeed = RJSspeed - temp;
     }
-    else if( RJSspeed < -60 )
+    else if( RJSspeed < -45 )
     {
-      int temp = RJSspeed + 60;
+      int temp = RJSspeed + 45;
       RJSspeed = RJSspeed - temp;
     }
     // If the driver moves forward
