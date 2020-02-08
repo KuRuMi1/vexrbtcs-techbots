@@ -31,8 +31,11 @@ int main() {
 }
 
 void atonomous() {
-  
-  
+  leftmotor.rotateFor( vex::directionType::rev, 1000, vex::rotationUnits::deg );
+  rightmotor.rotateFor( vex::directionType::rev, 1000, vex::rotationUnits::deg );
+
+  leftmotor.rotateFor( vex::directionType::fwd, 1000, vex::rotationUnits::deg );
+  rightmotor.rotateFor( vex::directionType::fwd, 1000, vex::rotationUnits::deg );
 }
 
 void usercontrol() {
